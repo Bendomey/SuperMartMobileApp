@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+//for administrator
+Route::group([], function(){
+	Route::get('/dashboard','ViewController@index')->name('/dashboard');
 });
+
+Auth::routes();
+Route::get('logout','Auth\LoginController@logout')->name('logout');
+Route::get('/home', 'HomeController@index')->name('home');
