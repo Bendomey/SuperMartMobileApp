@@ -17,8 +17,8 @@
 
 
 //for administrator
-Route::group([], function(){
-	Route::get('/dashboard','ViewController@index')->name('/dashboard');
+Route::group(['middleware'=>'auth'], function(){
+	Route::get('/','ViewController@index')->name('/');
 });
 
 Auth::routes();

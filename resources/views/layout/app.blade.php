@@ -46,7 +46,7 @@
         <div class="navbar-header">
           <ul class="nav navbar-nav flex-row">
             <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('/dashboard')}}"><img class="brand-logo" alt="modern admin logo" src="{{asset('app-assets/images/logo/logo.png')}}">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('/')}}"><img class="brand-logo" alt="modern admin logo" src="{{asset('app-assets/images/logo/logo.png')}}">
                 <h3 class="brand-text">SuperMart</h3></a></li>
             <li class="nav-item d-none d-lg-block nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon fa fa-angle-left font-medium-3 white"></i></a></li>
             <li class="nav-item d-lg-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
@@ -151,9 +151,9 @@
                   <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="javascript:void(0)">Read all messages</a></li>
                 </ul>
               </li>
-              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">John Doe</span><span class="avatar avatar-online"><img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></a>
+              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{Auth::user()->name}}</span><span class="avatar avatar-online"><img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></a>
                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="user-profile.html"><i class="fa fa-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="fa fa-envelope"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="fa fa-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="fa fa-comment"></i> Chats</a>
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="login-with-bg-image.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
               </li>
             </ul>
@@ -169,7 +169,7 @@
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-          <li class=" nav-item"><a href="{{route('/dashboard')}}"><i class="fa fa-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+          <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
           </li> 
         </ul>
       </div>
