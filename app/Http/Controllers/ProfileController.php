@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+// use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -35,5 +37,26 @@ class ProfileController extends Controller
     	}else{
     		return back()->with('error','Your old password did not match');
     	}
+    }
+
+    public function update_profile_img(Request $request){
+    	//find the user
+    	$user = User::where('id',Auth::user()->id)->first();
+
+    	if($user->profile_img != null){
+    		unlink($user->profile_img);
+    	}
+		$user->update([
+			'profile_img' => $this->updateImage($request->profileImage),
+		]);
+		return back()->with('success', 'Profile image updated successfully');
+    }
+
+    private function updateImage($data){
+    	
+    	$hashName = md5(microtime());
+    	$new_name = 'profile_images/' . $hashName . '.' . $data->getClientOriginalExtension();
+    	Image::make($data)->save($new_name);
+    	return $new_name;
     }
 }

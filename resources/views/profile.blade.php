@@ -160,21 +160,24 @@
         </button>
       </div>
       <div class="modal-body">
-      	<div style="display: flex; flex-direction: row; margin-bottom: 2vh; ">
-      		
-        <img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" height="100" width="150" class="rounded-circle  height-150 profileImg" alt="Card image">
-	    <div style="margin-left:2vw;">
-	        <h2>File Upload</h2>
-	        <div class="custom-file">
-		    	<input type="file" class="custom-file-input" id="profileImage" onchange="previewImage(event)" required>
-		    	<label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
-			</div>
-      	</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      	<form action="" method="post">
+      		@csrf
+	      	<div style="display: flex; flex-direction: row; margin-bottom: 2vh; ">
+	      		
+	        <img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" height="100" width="150" class="rounded-circle  height-150 profileImg" alt="Card image">
+		    <div style="margin-left:2vw;">
+		        <h2>File Upload</h2>
+		        <div class="custom-file">
+			    	<input type="file" class="custom-file-input" id="profileImage" name="profileImage" onchange="previewImage(event)" required>
+			    	<label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
+				</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	     </form>
     </div>
   </div>
 </div>
