@@ -17,8 +17,25 @@
             </div>
           </div>
         </div>
+
+        @if(Session::has('success'))
+	        <div class="alert alert-success alert-dismissible fade show" role="alert">
+			  <strong>Congratulations!</strong> {{Session::get('success')}}
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		@endif
+
+		@if(Session::has('error'))
+	        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+			  <strong>Sorry!</strong> {{Session::get('error')}}
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		@endif
 	<section id="user-profile-cards-with-cover-image" class="row mt-2">
-   
     <div class="col-xl-3 col-md-6 col-12">
         <div class="card box-shadow-1">
             <div class="text-center">
@@ -40,45 +57,51 @@
 	            <div class="card-header">
 	            <div class="card-content collpase show">
 	                <div class="card-body">
-	                    <form class="form form-horizontal form-bordered">
+	                    <form class="form form-horizontal form-bordered" action="{{route(
+	                    'update_profile_phase_1')}}" method="POST">
+	                    	@csrf
 	                    	<div class="form-body">
 	                    		<h4 class="form-section"><i class="fa fa-user"></i> Personal Info</h4>
 			                    <div class="form-group row mx-auto">
-	                            	<label class="col-md-3 label-control" for="projectinput1">Full Name</label>
+			                    	<input type="hidden" name="id" value="{{Auth::user()->id}}">
+
+	                            	<label class="col-md-3 label-control" for="full name">Full Name</label>
 		                            <div class="col-md-9">
-		                            	<input type="text" id="projectinput1" class="form-control" placeholder="Full Name" name="fname" value="{{Auth::user()->name}}">
+		                            	<input type="text" id="namePersonal" class="form-control personalInfo" placeholder="Full Name" name="name" value="{{Auth::user()->name}}" readonly required>
 		                            </div>
 		                        </div>
 		                        <div class="form-group row mx-auto">
-	                            	<label class="col-md-3 label-control" for="projectinput2">Position</label>
+	                            	<label class="col-md-3 label-control" for="position">Position</label>
 									<div class="col-md-9">
-	                            		<input type="text" id="projectinput2" class="form-control" placeholder="Position" name="lname" value="{{Auth::user()->position}}">
+	                            		<input type="text" id="positionPersonal" class="form-control personalInfo" placeholder="Position" name="position" value="{{Auth::user()->position}}" readonly required>
 	                            	</div>
 		                        </div>
 
 		                        <div class="form-group row mx-auto">
-		                            <label class="col-md-3 label-control" for="projectinput3">E-mail</label>
+		                            <label class="col-md-3 label-control" for="email">E-mail</label>
 		                            <div class="col-md-9">
-		                            	<input type="text" id="projectinput3" class="form-control" placeholder="E-mail" name="email" value="{{Auth::user()->email}}">
+		                            	<input type="text" id="emailPersonal" class="form-control personalInfo" placeholder="E-mail" name="email" value="{{Auth::user()->email}}" readonly required>
 		                            </div>
 		                        </div>
 
 		                        <div class="form-group row mx-auto last">
-		                            <label class="col-md-3 label-control" for="projectinput4">Contact Number</label>
+		                            <label class="col-md-3 label-control" for="contact">Contact Number</label>
 		                            <div class="col-md-9">
-		                            	<input type="text" id="projectinput4" class="form-control" placeholder="Phone" name="phone" value="{{Auth::user()->contact}}">
+		                            	<input type="tel" id="contactPersonal" class="form-control personalInfo" placeholder="Phone" name="contact" value="{{Auth::user()->contact}}" readonly required>
 		                            </div>
 		                        </div>
-
-								
 							</div>
-
 	                        <div class="form-actions">
-	                            <button type="submit" class="btn btn-danger">
-	                                <i class="fa fa-check-square"></i> Save
-	                            </button>
+	                        	<button class="btn btn-danger d-none saveForPersonalInfo"
+	                            data-toggle="modal" data-target="#passwordConfirmation">
+			                        <i class="fa fa-check-square"></i> Save
+			                    </button>
 	                        </div>
 	                    </form>
+	                    <button  class="btn btn-info editForPersonalInfo">
+	                        <i class="fa fa-pencil-alt"></i> Edit
+	                    </button>
+	                    
 	                </div>
 	            </div>
 	        </div>
@@ -87,25 +110,27 @@
 	            <div class="card-header">
 	            <div class="card-content collpase show">
 	                <div class="card-body">
-	                    <form class="form form-horizontal form-bordered">
+	                    <form class="form form-horizontal form-bordered" action="{{route('updatePassword')}}" method="post">
+	                    	@csrf
 	                    	<div class="form-body">
 	                    		<h4 class="form-section"><i class="fa fa-lock"></i> Security Settings</h4>
 			                    <div class="form-group row mx-auto">
-	                            	<label class="col-md-3 label-control" for="projectinput1">Old Password</label>
+			                    	<input type="hidden" name="id" value="{{Auth::user()->id}}">
+	                            	<label class="col-md-3 label-control" for="oldPassword">Old Password</label>
 		                            <div class="col-md-9">
-		                            	<input type="password" id="projectinput1" class="form-control" placeholder="Old Password" name="fname">
+		                            	<input type="password" id="oldPassword" class="form-control" placeholder="Old Password" name="old_password">
 		                            </div>
 		                        </div>
 		                        <div class="form-group row mx-auto">
-	                            	<label class="col-md-3 label-control" for="projectinput1">New Password</label>
+	                            	<label class="col-md-3 label-control" for="newPassword">New Password</label>
 		                            <div class="col-md-9">
-		                            	<input type="password" id="projectinput1" class="form-control" placeholder="New Password" name="fname">
+		                            	<input type="password" id="newPassword" class="form-control" placeholder="New Password" name="new_password">
 		                            </div>
 		                        </div>
 		                        <div class="form-group row mx-auto">
-	                            	<label class="col-md-3 label-control" for="projectinput1">Confirm Password</label>
+	                            	<label class="col-md-3 label-control" for="confirmPassword">Confirm Password</label>
 		                            <div class="col-md-9">
-		                            	<input type="password" id="projectinput1" class="form-control" placeholder="Confirm Password" name="fname">
+		                            	<input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" name="confirm_password">
 		                            </div>
 		                        </div>
 							</div>
@@ -124,6 +149,7 @@
 
 </div>
 
+
 <div class="modal fade" id="uploadProfileImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -136,11 +162,11 @@
       <div class="modal-body">
       	<div style="display: flex; flex-direction: row; margin-bottom: 2vh; ">
       		
-        <img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" class="rounded-circle  height-150" alt="Card image">
+        <img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" height="100" width="150" class="rounded-circle  height-150 profileImg" alt="Card image">
 	    <div style="margin-left:2vw;">
 	        <h2>File Upload</h2>
 	        <div class="custom-file">
-		    	<input type="file" class="custom-file-input" id="profileImage" required>
+		    	<input type="file" class="custom-file-input" id="profileImage" onchange="previewImage(event)" required>
 		    	<label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
 			</div>
       	</div>
@@ -152,5 +178,7 @@
     </div>
   </div>
 </div>
+
+
 
 @stop

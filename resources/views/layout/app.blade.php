@@ -45,7 +45,7 @@
       <div class="navbar-wrapper">
         <div class="navbar-header">
           <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+            <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="fa fa-bars font-large-1"></i></a></li>
             <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('/')}}"><img class="brand-logo" alt="modern admin logo" src="{{asset('app-assets/images/logo/logo.png')}}">
                 <h3 class="brand-text">SuperMart</h3></a></li>
             <li class="nav-item d-none d-lg-block nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon fa fa-angle-left font-medium-3 white"></i></a></li>
@@ -208,5 +208,9 @@
     <script src="{{asset('app-assets/js/scripts/pages/dashboard-sales.min.js')}}"></script>
     <!-- END: Page JS-->
 
+    <!-- My Personal Scripts -->
+    <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/profile.js')}}"></script>
 </body>
 </html>
