@@ -55,7 +55,7 @@
         <div class="navbar-container content">
           <div class="collapse navbar-collapse" id="navbar-mobile">
             <ul class="nav navbar-nav mr-auto float-left">
-              <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand" href="#"><i class="fa fa-maximize"></i></a></li>
+              <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand" href="#"><i class="fa fa-compress"></i></a></li>
               <li class="nav-item nav-search"><a class="nav-link nav-link-search" href="#"><i class="fa fa-search"></i></a>
                 <div class="search-input">
                   <input class="input" type="text" placeholder="Explore Modern...">
@@ -152,7 +152,7 @@
                 </ul>
               </li>
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{Auth::user()->name}}</span><span class="avatar avatar-online"><img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></a>
-                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="user-profile.html"><i class="fa fa-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="fa fa-envelope"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="fa fa-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="fa fa-comment"></i> Chats</a>
+                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{route('profile')}}"><i class="fa fa-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="fa fa-envelope"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="fa fa-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="fa fa-comment"></i> Chats</a>
                   <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
               </li>

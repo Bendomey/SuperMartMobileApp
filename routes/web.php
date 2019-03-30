@@ -19,6 +19,7 @@
 //for administrator
 Route::group(['middleware'=>'auth'], function(){
 	Route::get('/','ViewController@index')->name('/');
+	Route::get('/profile','ViewController@profile')->name('profile');
 });
 
 Auth::routes();
