@@ -2,7 +2,7 @@
 @section('title', 'Profile')
 @section('content')
 
-	<div class="content-wrapper">
+<div class="content-wrapper">
 	<div class="content-header row mb-1">
           <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
             <h3 class="content-header-title mb-0 d-inline-block">Profile</h3>
@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{Auth::user()->name}}</h4>
                     <h6 class="card-subtitle text-muted">{{Auth::user()->position}}</h6>
-                    <button type="button" class="btn btn-warning mt-1">
+                    <button type="button" class="btn btn-warning mt-1" data-toggle="modal" data-target="#uploadProfileImage">
 	                    Change Profile Image
 	                </button>
                 </div>
@@ -122,6 +122,35 @@
     </div>
 </section>
 
+</div>
+
+<div class="modal fade" id="uploadProfileImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload Profile Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div style="display: flex; flex-direction: row; margin-bottom: 2vh; ">
+      		
+        <img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" class="rounded-circle  height-150" alt="Card image">
+	    <div style="margin-left:2vw;">
+	        <h2>File Upload</h2>
+	        <div class="custom-file">
+		    	<input type="file" class="custom-file-input" id="profileImage" required>
+		    	<label class="custom-file-label" for="validatedCustomFile">Choose Image...</label>
+			</div>
+      	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 @stop
