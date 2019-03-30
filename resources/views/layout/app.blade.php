@@ -151,7 +151,15 @@
                   <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="javascript:void(0)">Read all messages</a></li>
                 </ul>
               </li>
-              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{Auth::user()->name}}</span><span class="avatar avatar-online"><img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span></a>
+              <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="mr-1 user-name text-bold-700">{{Auth::user()->name}}</span>
+                <span class="avatar avatar-online">
+                  @if(Auth::user()->profile_img == null)
+                    <img src="{{asset('app-assets/images/portrait/small/avatar-s-19.png')}}" alt="avatar">
+                  @else
+                    <img src='{{asset(Auth::user()->profile_img)}}' height="50" width="70" alt="avatar">
+                  @endif
+                  <i></i>
+                </span></a>
                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{route('profile')}}"><i class="fa fa-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="fa fa-envelope"></i> My Inbox</a><a class="dropdown-item" href="user-cards.html"><i class="fa fa-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="fa fa-comment"></i> Chats</a>
                   <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>

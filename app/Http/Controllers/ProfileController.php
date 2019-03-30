@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-// use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -52,7 +52,7 @@ class ProfileController extends Controller
 		return back()->with('success', 'Profile image updated successfully');
     }
 
-    private function updateImage($data){
+    protected function updateImage($data){
     	
     	$hashName = md5(microtime());
     	$new_name = 'profile_images/' . $hashName . '.' . $data->getClientOriginalExtension();

@@ -22,6 +22,7 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/profile','ViewController@profile')->name('profile');
 	Route::post('/update_profile_phase_1','ProfileController@updatePersonalInfo')->name('update_profile_phase_1');
 	Route::post('/update_password_phase_1','ProfileController@updatePassword')->name('updatePassword');
+	Route::post('/update_profile_img','ProfileController@update_profile_img')->name('update_profile_img');
 });
 
 Auth::routes();

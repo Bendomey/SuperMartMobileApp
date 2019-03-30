@@ -40,7 +40,12 @@
         <div class="card box-shadow-1">
             <div class="text-center">
                 <div class="card-body">
-                    <img src="../../../app-assets/images/portrait/medium/avatar-m-4.png" class="rounded-circle  height-150" alt="Card image">
+                	@if(Auth::user()->profile_img == null)
+                    	<img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" class="rounded-circle  height-150" alt="Card image">
+                    @else
+                    	<img src="{{asset(Auth::user()->profile_img)}}" class="rounded-circle  height-150" alt="Card image">
+
+                    @endif
                 </div>
                 <div class="card-body">
                     <h4 class="card-title">{{Auth::user()->name}}</h4>
@@ -160,11 +165,14 @@
         </button>
       </div>
       <div class="modal-body">
-      	<form action="" method="post">
+      	<form action="{{route('update_profile_img')}}" enctype="multipart/form-data" method="post">
       		@csrf
 	      	<div style="display: flex; flex-direction: row; margin-bottom: 2vh; ">
-	      		
-	        <img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" height="100" width="150" class="rounded-circle  height-150 profileImg" alt="Card image">
+	 		@if(Auth::user()->profile_img == null)     		
+	        	<img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" height="100" width="150" class="rounded-circle  height-150 profileImg" alt="Card image">
+	        @else
+	        	<img src="{{asset(Auth::user()->profile_img)}}" height="100" width="150" class="rounded-circle  height-150 profileImg" alt="Card image">
+	        @endif
 		    <div style="margin-left:2vw;">
 		        <h2>File Upload</h2>
 		        <div class="custom-file">
@@ -174,8 +182,8 @@
 	      	</div>
 	      </div>
 	      <div class="modal-footer">
-	        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <a class="btn btn-secondary" style="color: #fff" data-dismiss="modal">Close</a>
+	        <button type="submit" class="btn btn-primary">Save changes</button>
 	      </div>
 	     </form>
     </div>
