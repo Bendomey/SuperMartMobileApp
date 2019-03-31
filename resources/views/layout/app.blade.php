@@ -48,7 +48,7 @@
             <li class="nav-item mobile-menu d-lg-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="fa fa-bars font-large-1"></i></a></li>
             <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('/')}}"><img class="brand-logo" alt="modern admin logo" src="{{asset('app-assets/images/logo/logo.png')}}">
                 <h3 class="brand-text">SuperMart</h3></a></li>
-            <li class="nav-item d-none d-lg-block nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon fa fa-angle-left font-medium-3 white"></i></a></li>
+            <li class="nav-item d-none d-lg-block nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon fa fa-toggle-off font-medium-3 white"></i></a></li>
             <li class="nav-item d-lg-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a></li>
           </ul>
         </div>
@@ -177,8 +177,13 @@
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-          <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
-          </li> 
+          <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-home mr-1"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
+          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Categories</span><i class="fa fa-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Categories"></i>
+          </li>
+          <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">Add Category</span></a></li>
+          <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Category</span></a></li>
+          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Store</span><i class="fa fa-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Store"></i>
+          </li>
         </ul>
       </div>
     </div>
