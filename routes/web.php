@@ -19,10 +19,18 @@
 //for administrator
 Route::group(['middleware'=>'auth'], function(){
 	Route::get('/','ViewController@index')->name('/');
+	//for profile
 	Route::get('/profile','ViewController@profile')->name('profile');
 	Route::post('/update_profile_phase_1','ProfileController@updatePersonalInfo')->name('update_profile_phase_1');
 	Route::post('/update_password_phase_1','ProfileController@updatePassword')->name('updatePassword');
 	Route::post('/update_profile_img','ProfileController@update_profile_img')->name('update_profile_img');
+
+	//for categories management
+	Route::get('/add_categories','ViewController@add_categories')->name('add_categories');
+	Route::post('/add_categories/add_phase','CategoriesController@create')->name('add_category_phase');
+	Route::get('/view_categories','CategoriesController@view_categories')->name('view_categories');
+	Route::get('/view_categories/delete_phase/{categoryName}','CategoriesController@destroy');
+	Route::post('/view_categories/update','CategoriesController@update')->name('update_category');
 });
 
 Auth::routes();

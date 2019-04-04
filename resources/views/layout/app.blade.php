@@ -178,11 +178,11 @@
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
           <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-home mr-1"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
-          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Categories</span><i class="fa fa-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Categories"></i>
+          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Categories</span>
           </li>
-          <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">Add Category</span></a></li>
-          <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Category</span></a></li>
-          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Store</span><i class="fa fa-ellipsis-h" data-toggle="tooltip" data-placement="right" data-original-title="Store"></i>
+          <li class=" nav-item"><a href="{{route('add_categories')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">Add Category</span></a></li>
+          <li class=" nav-item"><a href="{{route('view_categories')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Category</span></a></li>
+          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Store</span>
           </li>
         </ul>
       </div>
@@ -225,5 +225,6 @@
     <script type="text/javascript" src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/profile.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>
 </body>
 </html>

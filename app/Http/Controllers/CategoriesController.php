@@ -4,23 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categories;
-
+use Storage;
 
 class CategoriesController extends Controller
 {
+    public function view_categories(){
+        $categories = Categories::paginate(10);
+        return view('view_categories', compact('categories',$categories));
+    }
+
     public function create(Request $request){
     	$category = new Categories();
     	$category->category_name = $request->category_name;
     	$hashName = md5(microtime());
     	$image_name = 'category_images/' . $hashName . '.' . ($request->file('category_img'))->getClientOriginalExtension();
-    	$category->category_img;
+    	$category->category_img = $image_name;
     	Storage::putFileAs(
     		'public/category_images', 
     		$request->file('category_img'),
     		$hashName . '.' . ($request->file('category_img'))->getClientOriginalExtension()
     	);
     	$category->save();
-    	return back()->with('success','Category uploaded successfully');
+    	return back()->with('success',"$request->category_name uploaded successfully");
     }
 
     public function update(Request $request){
@@ -43,7 +48,7 @@ class CategoriesController extends Controller
 
     	$category->save();
     	//redirect to view page of category
-    	return redirect()->route()->withSuccess("$request->category_name was updated successfully");
+    	return back()->withSuccess("$request->category_name was updated successfully");
     }
 
     public function destroy($categoryName){

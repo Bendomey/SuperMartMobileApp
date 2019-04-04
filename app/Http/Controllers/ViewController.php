@@ -15,4 +15,8 @@ class ViewController extends Controller
     {
     	return view('profile');
     }
+
+    public function add_categories(){
+    	return view('add_categories');
+    }
 }
