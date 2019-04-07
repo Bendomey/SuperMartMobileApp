@@ -184,6 +184,8 @@
           <li class=" nav-item"><a href="{{route('view_categories')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Category</span></a></li>
           <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Store</span>
           </li>
+          <li class=" nav-item"><a href="{{route('product.create')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">Add Product</span></a></li>
+          <li class=" nav-item"><a href="{{route('product.index')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Products</span></a></li>
         </ul>
       </div>
     </div>

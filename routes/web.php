@@ -31,6 +31,9 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/view_categories','CategoriesController@view_categories')->name('view_categories');
 	Route::get('/view_categories/delete_phase/{categoryName}','CategoriesController@destroy');
 	Route::post('/view_categories/update','CategoriesController@update')->name('update_category');
+	Route::resource('/product','ProductController');
+	Route::post('/product/update','ProductController@update')->name('updateProduct');
+	Route::get('/product/delete_phase/{id}','ProductController@destroy');
 });
 
 Auth::routes();

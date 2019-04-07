@@ -10,7 +10,7 @@ class CategoriesController extends Controller
 {
     public function view_categories(){
         $categories = Categories::paginate(10);
-        return view('view_categories', compact('categories',$categories));
+        return view('view_categories', compact('categories'));
     }
 
     public function create(Request $request){

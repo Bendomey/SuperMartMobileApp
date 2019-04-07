@@ -1,5 +1,5 @@
 1. Create and Upload Categories into Categories Table
-	i.category_id
+	i. category_id
 	ii. name
 	iii. image
 
@@ -10,11 +10,12 @@
 3. Create and Upload Products
 	i. product_id
 	ii. category_id
-	iii. image
+	iii. product_image
 	iv. small details about product
 	v. Expiry Date
-	v. name
-	vi price
+	v. product_name
+	vi product_price
+	vii isFeatured
 
 4. View Product
 	i. Promote 
