@@ -92,10 +92,11 @@ class ProductController extends Controller
      */
     public function update(Request $request)
     {
-        $product = Product::whereId($request->id)->first();
+        $product = Product::findOrFail($request->id);
         $product->category_name = $request->category_name;
         $product->product_name = $request->product_name;
         $product->product_price = $request->product_price;
+        $product->product_description = $request->product_description;
         //saving the image
         if($request->product_img != null){
             //delete old image
@@ -130,5 +131,53 @@ class ProductController extends Controller
         Storage::delete("public/$product->product_name");
         $product->delete();
         return back()->withSuccess('Product has been deleted succesfully');
+    }
+
+    public function feature($id){
+        $product = Product::findOrFail($id);
+        $product->update([
+            'featured'=>'1'
+        ]);
+        return response()->json('success');
+    }
+
+    public function unFeature($id){
+        $product = Product::findOrFail($id);
+        $product->update([
+            'featured'=>'0'
+        ]);
+        return response()->json('success');
+    }
+
+    public function promote($id){
+        $product = Product::findOrFail($id);
+        $product->update([
+            'promote'=>'1'
+        ]);
+        return response()->json('success');
+    }
+
+    public function unPromote($id){
+        $product = Product::findOrFail($id);
+        $product->update([
+            'promote'=>'0'
+        ]);
+        return response()->json('success');
+    }
+
+    public function recommended($id){
+        $product = Product::findOrFail($id);
+        $product->update([
+            'recommended'=>'1'
+        ]);
+        return response()->json('success');
+    }
+
+    public function unRecommended($id){
+        $product = Product::findOrFail($id);
+        $product->update([
+            'recommended'=>'0'
+        ]);
+        return response()->json('success');
     }
 }

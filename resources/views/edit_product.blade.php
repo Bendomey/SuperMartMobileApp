@@ -46,13 +46,13 @@
 						@csrf
 						<div class="form-body">
 							<h4 class="form-section"><i class="fa fa-plus"></i> Add Product</h4>
-							<input type="text" name="{{$product->id}}" value="{{$product->id}}">
+							<input type="hidden" name="id" value="{{$product->id}}">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="product name">Category</label>
 										<select class="form-control" name="category_name" required>
-											<option value="default" hidden>{{$product->category_name}}</option>
+											<option value="{{$product->category_name}}" hidden selected>{{$product->category_name}}</option>
 											@if(count($categories) > 0)
 												@foreach($categories as $cat)
 													<option value="{{$cat->category_name}}">{{$cat->category_name}}</option>
