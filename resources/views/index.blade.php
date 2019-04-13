@@ -150,29 +150,27 @@
         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
         <div class="heading-elements">
           <ul class="list-inline mb-0">
-            <li><a href="#">Show all</a></li>
+            <li><a href="{{route('product.index')}}">Show all</a></li>
           </ul>
         </div>
       </div>
       <div class="card-content collapse show">
         <div class="card-body p-0">
           <div class="table-responsive">
-            <table class="table mb-0">
-              <tbody>
-                <tr>
-                  <th scope="row" class="border-top-0">iPone X</th>
-                  <td class="border-top-0">2245</td>
-                </tr>
-                <tr>
-                  <th scope="row">One Plus</th>
-                  <td>1850</td>
-                </tr>
-                <tr>
-                  <th scope="row">Samsung S7</th>
-                  <td>1550</td>
-                </tr>
-              </tbody>
-            </table>
+            @if(count($top_product) > 0)
+              @foreach($product as $top_product)
+              <table class="table mb-0">
+                <tbody>
+                  <tr>
+                    <th scope="row" class="border-top-0">{{$product->product_name}}</th>
+                    <td class="border-top-0">{{$product->product_price}}</td>
+                  </tr>
+                </tbody>
+              @endforeach
+            @else
+              <h4 class="ml-2">No Product Available</h4>
+            @endif
+              </table>
           </div>
         </div>
       </div>

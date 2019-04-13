@@ -41,7 +41,7 @@
             <div class="text-center">
                 <div class="card-body">
                 	@if(Auth::user()->profile_img == null)
-                    	<img src="{{asset('app-assets/images/portrait/medium/avatar-m-4.png')}}" class="rounded-circle  height-150" alt="Card image">
+                    	<img src="{{asset('app-assets/images/portrait/small/avatar-s-19.png')}}" class="rounded-circle  height-150" alt="Card image">
                     @else
                     	<img src="{{asset(Auth::user()->profile_img)}}" class="rounded-circle  height-150" alt="Card image">
 

@@ -1,13 +1,13 @@
 1. Create and Upload Categories into Categories Table
-	i. category_id
-	ii. name
-	iii. image
+done.	i. category_id
+done.	ii. name
+done.	iii. image
 
 2. View Categories 
-	i. Delete
-	ii. Update
+done.	i. Delete
+done.	ii. Update
 
-3. Create and Upload Products
+done. 3. Create and Upload Products
 	i. product_id
 	ii. category_id
 	iii. product_image
@@ -17,11 +17,11 @@
 	vi product_price
 	vii isFeatured
 
-4. View Product
+done. 4. View Product
 	i. Promote 
 	ii. Feature
 	iii. Recommend
 
 for Mobile Side
-4. Users Table
-5. sign in and register
+done. 4. Users Table
+done. 5. sign in and register

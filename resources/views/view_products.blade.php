@@ -98,7 +98,7 @@
 					        	@endforeach
 					        @else
 					        	 <div class="alert alert-warning" role="alert">
-                                        <strong>Sorry!</strong> No Categories Available :(
+                                        <strong>Sorry!</strong> No Products Available :(
                                     </div>
 					        @endif
 					    </tbody>
