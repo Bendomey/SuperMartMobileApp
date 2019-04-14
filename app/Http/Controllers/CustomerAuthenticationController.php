@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Notification;
 use App\Customer;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\CustomerForgotPassword;
+use App\Notifications\CustomerForgotPasswordMail;
 
 class CustomerAuthenticationController extends Controller
 {
@@ -35,4 +38,61 @@ class CustomerAuthenticationController extends Controller
 
     	return response()->json($customer);
 	}
+
+    /**
+    * @auth Domey Benjamin
+    * This is the Password Reset Flow
+    * 1.Collect Email Address from user, create a validation code for user
+    * and send it to the user through email or contact
+    * 2.Check if the the validation code entered by the user is the same as 
+    * the one sent to them from the database
+    * 3.Collect the id, new password from the user and update the password
+    */
+
+    public function forgotPassword(Request $request){
+        $user = Customer::where('customer_email',$request->email)->first();
+        if($user != null){
+            $user->validation_code = $this->validation_code();
+            $user->save();
+            try{                
+            Notification::route('mail',$user->customer_email)->notify(new CustomerForgotPasswordMail($user->validation_code,$user->customer_name));
+            // Notification::send($user->customer_contact,new CustomerForgotPassword($user->transaction_code,$user->customer_email));
+            }catch(Exception $e){
+                return response()->json(null);
+            }
+            return response()->json($user);
+        }else{
+            return response()->json(null);
+        }
+    }
+
+    public function validateCode(Request $request){
+        $user = Customer::whereId($request->id)->first();
+        if($user != null){
+            if($user->validation_code == $request->validation_code){
+                $user->validation_code = null;
+                $user->save();
+                return response()->json($user);
+            }
+        }else{
+            return response()->json(null);
+        }
+    }
+
+    public function resetPassword(Request $request){
+        $user = Customer::whereId($request->id)->first();
+        if($user != null){
+            $user->customer_password = Hash::make($request->password);
+            $user->save();
+            return response()->json(true);
+        }else{
+            return response()->json(false);
+        }
+    }
+
+    protected function validation_code(){
+        $code = rand(pow(10, 4),pow(10, 5)-1);
+        return $code;
+    }
+
 }

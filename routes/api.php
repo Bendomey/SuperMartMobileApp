@@ -20,3 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register','CustomerAuthenticationController@register')->name('register');
 Route::post('login','CustomerAuthenticationController@login')->name('login');
+
+/**
+* Password reset flow routes
+*/
+
+Route::post('forgot_password','CustomerAuthenticationController@forgotPassword')->name('forgot_password');
+Route::post('validate_code','CustomerAuthenticationController@validateCode')->name('validate_code');
+Route::post('reset_password','CustomerAuthenticationController@resetPassword')->name('reset_password');
