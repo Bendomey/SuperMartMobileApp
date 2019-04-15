@@ -26,7 +26,7 @@ class CustomerAuthenticationController extends Controller
             Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
             return response()->json($customer);
         }else{
-            return response()->json($user);
+            return response()->json(null);
         }
     }
 
@@ -52,7 +52,7 @@ class CustomerAuthenticationController extends Controller
 		if(Customer::where('customer_email',$request->email)->first() != null){
 			$userVerified = Customer::where('customer_email',$request->email)->first();
 			if(Hash::check($request->password,$userVerified->customer_password)){
-				$customer = Customer::where('customer_email',$request->email)->get();
+				$customer = Customer::where('customer_email',$request->email)->first();
 			}else{
 				$customer = null;
 			}
