@@ -8,18 +8,43 @@ use App\Customer;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\CustomerForgotPassword;
 use App\Notifications\CustomerForgotPasswordMail;
+use App\Notifications\VerifyCustomerAccount;
 
 class CustomerAuthenticationController extends Controller
 {
     public function register(Request $request){
-    	Customer::create([
-    		'customer_name' => $request->name,
-    		'customer_email'=> $request->email,
-    		'customer_contact' => $request->contact,
-    		'customer_password' => Hash::make($request->password),
-    	]);
+        $user = Customer::where('customer_email',$request->email)->first();
+        if($user == null){
+            $customer = new Customer();
+            $customer->customer_name = $request->name;
+            $customer->customer_email = $request->email;
+            $customer->customer_contact = $request->contact;
+            $customer->customer_password = Hash::make($request->password);
+            $customer->validation_code = $this->validation_code();
+            $customer->save();
+            //send verification
+            Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
+            return response()->json($customer);
+        }else{
+            return response()->json($user);
+        }
+    }
 
-    	return response()->json('success');
+    public function verifyAccount(Request $request){
+        $user = Customer::whereId($request->id)->first();
+        if($user != null){
+            if($request->verification_code == $user->validation_code){
+                $user->validation_code = null;
+                $user->isVerified = '1';
+                $user->save();
+                return response()->json($user);
+            }else{
+                return response()->json(false);
+            }        
+        }else{
+            return response()->json(null);
+        }
+
     }
 
     public function login(Request $request){
@@ -73,6 +98,8 @@ class CustomerAuthenticationController extends Controller
                 $user->validation_code = null;
                 $user->save();
                 return response()->json($user);
+            }else{
+                return response()->json(false);
             }
         }else{
             return response()->json(null);
@@ -90,7 +117,7 @@ class CustomerAuthenticationController extends Controller
         }
     }
 
-    protected function validation_code(){
+    private function validation_code(){
         $code = rand(pow(10, 4),pow(10, 5)-1);
         return $code;
     }

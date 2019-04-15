@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('register','CustomerAuthenticationController@register')->name('register');
+Route::post('verify_user','CustomerAuthenticationController@verifyAccount')->name('verify_user');
 Route::post('login','CustomerAuthenticationController@login')->name('login');
 
 /**
