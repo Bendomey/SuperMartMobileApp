@@ -29,3 +29,23 @@ Route::post('login','CustomerAuthenticationController@login')->name('login');
 Route::post('forgot_password','CustomerAuthenticationController@forgotPassword')->name('forgot_password');
 Route::post('validate_code','CustomerAuthenticationController@validateCode')->name('validate_code');
 Route::post('reset_password','CustomerAuthenticationController@resetPassword')->name('reset_password');
+
+/**
+* 1.Update the Full Name
+* 2.Update the email
+* 3.Update the contact
+* 4.Update the password
+*/
+
+Route::post('update_profile','CustomerAuthenticationController@updateProfile')->name('update_profile');
+Route::post('update_password','CustomerAuthenticationController@updatePassword')->name('update_password');
+
+
+/**
+* Get data from the database
+*/
+
+Route::group([], function(){
+	Route::get('get_categories','MobileAppController@categories')->name('get_categories');
+	Route::get('get_products','MobileAppController@products')->name('get_products');
+});

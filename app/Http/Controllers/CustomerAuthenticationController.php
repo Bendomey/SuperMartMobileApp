@@ -108,7 +108,7 @@ class CustomerAuthenticationController extends Controller
 
     public function resetPassword(Request $request){
         $user = Customer::whereId($request->id)->first();
-        if($user != null){
+        if($user){
             $user->customer_password = Hash::make($request->password);
             $user->save();
             return response()->json(true);
@@ -121,5 +121,39 @@ class CustomerAuthenticationController extends Controller
         $code = rand(pow(10, 4),pow(10, 5)-1);
         return $code;
     }
+
+    /**
+    * @auth Domey Benjamin
+    * This is for updating credentials
+    * 1.Update the Full Name
+    * 2.Update the email
+    * 3.Update the contact
+    * 4.Update the password
+    */
+
+    public function updateProfile(Request $request){
+        $customer = Customer::whereId($request->id)->first();
+        if($customer){
+            $customer->customer_name = $request->name;
+            $customer->customer_email = $request->email;
+            $customer->customer_contact = $request->contact;
+            $customer->save();
+            return response()->json($customer);
+        }else{
+            return response()->json($customer);
+        }
+    }
+
+    public function updatePassword(Request $request){
+        $customer = Customer::whereId($request->id)->first();
+        if(Hash::check($request->old_password, $customer->customer_password)){
+            $customer->customer_password = Hash::make($request->new_password);
+            $customer->save();
+            return response()->json($customer);
+        }else{
+            return response()->json(false);
+        }
+    }
+
 
 }
