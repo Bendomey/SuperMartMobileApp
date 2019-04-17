@@ -186,6 +186,9 @@
           </li>
           <li class=" nav-item"><a href="{{route('product.create')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">Add Product</span></a></li>
           <li class=" nav-item"><a href="{{route('product.index')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Products</span></a></li>
+          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Order</span>
+          </li>
+          <li class=" nav-item"><a href="{{route('view_orders')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Orders</span></a></li>
         </ul>
       </div>
     </div>
@@ -228,5 +231,6 @@
     <script type="text/javascript" src="{{asset('js/popper.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/profile.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/orders.js')}}"></script>
 </body>
 </html>

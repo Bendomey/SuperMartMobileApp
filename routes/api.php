@@ -49,3 +49,11 @@ Route::group([], function(){
 	Route::get('get_categories','MobileAppController@categories')->name('get_categories');
 	Route::get('get_products','MobileAppController@products')->name('get_products');
 });
+
+/**
+* Working with the orders
+*/
+
+Route::group([],function(){
+	Route::post('make_order','MobileAppController@makeOrder')->name('make_order');
+});

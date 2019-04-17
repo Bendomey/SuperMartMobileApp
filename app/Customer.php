@@ -15,4 +15,8 @@ class Customer extends Model
     ];
 
     protected $guard = ['created_at','updated_at'];
+
+    public function Order(){
+    	return $this->hasMany(Order::class);
+    }
 }
