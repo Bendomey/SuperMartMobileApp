@@ -47,6 +47,19 @@ class CustomerAuthenticationController extends Controller
 
     }
 
+    public function resendValidationCode(Request $request){
+        $customer = Customer::whereId($request->id)->first();
+        if($customer){
+            $customer->validation_code = $this->validation_code();
+            $customer->save();     
+            //send code         
+            Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
+            return response()->json($customer);
+        }else{
+            return response()->json(null);
+        }
+    }
+
     public function login(Request $request){
     	$customer = null;
 		if(Customer::where('customer_email',$request->email)->first() != null){
@@ -86,6 +99,23 @@ class CustomerAuthenticationController extends Controller
                 return response()->json(null);
             }
             return response()->json($user);
+        }else{
+            return response()->json(null);
+        }
+    }
+
+    public function resendVerifyCode(Request $request){
+        $customer = Customer::whereId($request->id)->first();
+        if($customer){
+            $customer->validation_code = $this->validation_code();
+            $customer->save();
+            try{                
+            Notification::route('mail',$user->customer_email)->notify(new CustomerForgotPasswordMail($user->validation_code,$user->customer_name));
+            // Notification::send($user->customer_contact,new CustomerForgotPassword($user->transaction_code,$user->customer_email));
+            }catch(Exception $e){
+                return response()->json(null);
+            }
+            return response()->json($customer);
         }else{
             return response()->json(null);
         }

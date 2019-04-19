@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register','CustomerAuthenticationController@register')->name('register');
 Route::post('verify_user','CustomerAuthenticationController@verifyAccount')->name('verify_user');
+Route::post('resend_validation_code','CustomerAuthenticationController@resendValidationCode')->name('resend_validation_code');
 Route::post('login','CustomerAuthenticationController@login')->name('login');
 
 /**
@@ -29,6 +30,7 @@ Route::post('login','CustomerAuthenticationController@login')->name('login');
 Route::post('forgot_password','CustomerAuthenticationController@forgotPassword')->name('forgot_password');
 Route::post('validate_code','CustomerAuthenticationController@validateCode')->name('validate_code');
 Route::post('reset_password','CustomerAuthenticationController@resetPassword')->name('reset_password');
+Route::post('resend_verification_code','CustomerAuthenticationController@resendVerifyCode')->name('resend_verification_code');
 
 /**
 * 1.Update the Full Name
