@@ -24,7 +24,7 @@ class CustomerAuthenticationController extends Controller
             $customer->save();
             //send verification
             try{
-                Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
+                Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer->customer_name,$customer->validation_code));
             }catch(Exception $e){
                 return response()->json(null);
             }

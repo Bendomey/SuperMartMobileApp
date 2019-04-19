@@ -10,16 +10,18 @@ use Illuminate\Notifications\Messages\MailMessage;
 class VerifyCustomerAccount extends Notification
 {
     use Queueable;
-    protected $user;
+    protected $name;
+    protected $code;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($name,$code)
     {
-        $this->user = $user;
+        $this->name = $name;
+        $this->code = $code;
     }
 
     /**
@@ -43,8 +45,8 @@ class VerifyCustomerAccount extends Notification
     {
         return (new MailMessage)
                     ->subject('Verify Account')
-                    ->greeting("Hello, $this->user->customer_name")
-                    ->line("Enter this: $this->user->validation_code on your account verfication page to create a new password")
+                    ->greeting("Hello, $this->name")
+                    ->line("Enter this: $this->code on your account verfication page to create a new password")
                     ->line('Thank you for using our application!');
     }
 
