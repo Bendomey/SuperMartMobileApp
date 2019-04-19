@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use NotificaationChannels\Hubtel\HubtelChannel;
-use NotificaationChannels\Hubtel\HubtelMessage;
+use NotificationChannels\Hubtel\HubtelChannel;
+use NotificationChannels\Hubtel\HubtelMessage;
 
 class CustomerForgotPassword extends Notification
 {
