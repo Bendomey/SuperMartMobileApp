@@ -43,8 +43,8 @@ class VerifyCustomerAccount extends Notification
     {
         return (new MailMessage)
                     ->subject('Verify Account')
-                    ->greeting("Hello, $this->user->name")
-                    ->line("Enter this: $this->user->verification_code on your account verfication page to create a new password")
+                    ->greeting("Hello, $this->user->customer_name")
+                    ->line("Enter this: $this->user->validation_code on your account verfication page to create a new password")
                     ->line('Thank you for using our application!');
     }
 
