@@ -23,7 +23,11 @@ class CustomerAuthenticationController extends Controller
             $customer->validation_code = $this->validation_code();
             $customer->save();
             //send verification
-            Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
+            try{
+                Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
+            }catch(Exception $e){
+                return response()->json(null);
+            }
             return response()->json($customer);
         }else{
             return response()->json(null);
@@ -52,11 +56,15 @@ class CustomerAuthenticationController extends Controller
         if($customer){
             $customer->validation_code = $this->validation_code();
             $customer->save();     
-            //send code         
-            Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
-            return response()->json($customer);
+            //send code
+            try{
+                Notification::route('mail',$customer->customer_email)->notify(new VerifyCustomerAccount($customer));
+            }catch(Exception $e){
+                return response()->json(false);
+            }        
+            return response()->json(true);
         }else{
-            return response()->json(null);
+            return response()->json(false);
         }
     }
 
