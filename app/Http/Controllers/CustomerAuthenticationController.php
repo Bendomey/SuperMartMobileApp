@@ -178,20 +178,29 @@ class CustomerAuthenticationController extends Controller
             $customer->save();
             return response()->json($customer);
         }else{
-            return response()->json($customer);
+            return response()->json(null);
         }
     }
 
     public function updatePassword(Request $request){
         $customer = Customer::whereId($request->id)->first();
-        if(Hash::check($request->old_password, $customer->customer_password)){
-            $customer->customer_password = Hash::make($request->new_password);
-            $customer->save();
+        if($customer){
+            if(Hash::check($request->old_password, $customer->customer_password)){
+                $customer->customer_password = Hash::make($request->new_password);
+                $customer->save();
             return response()->json($customer);
+            }else{
+                return response()->json(false);
+            }
         }else{
-            return response()->json(false);
+            return response()->json(null);
         }
+        
     }
 
+    public function getUser($id){
+        $user = Customer::whereId($id)->first();
+        return response()->json($user);
+    }
 
 }
