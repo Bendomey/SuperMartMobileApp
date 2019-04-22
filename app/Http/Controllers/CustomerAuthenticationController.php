@@ -188,7 +188,7 @@ class CustomerAuthenticationController extends Controller
             if(Hash::check($request->old_password, $customer->customer_password)){
                 $customer->customer_password = Hash::make($request->new_password);
                 $customer->save();
-            return response()->json($customer);
+            return response()->json(true);
             }else{
                 return response()->json(false);
             }
