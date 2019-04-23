@@ -17,7 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('get_user/{id}','CustomerAuthenticationController@getUser');
 Route::post('register','CustomerAuthenticationController@register')->name('register');
 Route::post('verify_user','CustomerAuthenticationController@verifyAccount')->name('verify_user');
 Route::post('resend_validation_code','CustomerAuthenticationController@resendValidationCode')->name('resend_validation_code');

@@ -198,9 +198,4 @@ class CustomerAuthenticationController extends Controller
         
     }
 
-    public function getUser($id){
-        $user = Customer::whereId($id)->first();
-        return response()->json($user);
-    }
-
 }

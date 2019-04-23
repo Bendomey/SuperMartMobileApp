@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('product_price');
             $table->string('product_img');
             $table->string('product_description');
+            $table->integer('numberOfItems')->nullable();
             $table->date('product_expiry_date');
             $table->enum('featured',[0,1])->default(0);
             $table->enum('promote',[0,1])->default(0);
