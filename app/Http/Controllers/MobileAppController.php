@@ -13,7 +13,7 @@ class MobileAppController extends Controller
 {
     //get categories
 	public function categories(){
-		$categories = Categories::all();
+		$categories = Categories::all()->toArray();
 		return response()->json(array('categories'=>$categories));
 	}
 
