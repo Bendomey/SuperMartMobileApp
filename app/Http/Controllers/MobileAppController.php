@@ -36,7 +36,7 @@ class MobileAppController extends Controller
 		$order->save();
 		//send mail to owner
 		Notification::route('mail','domeybenjamin1@gmail.com')->notify(new MakeOrderMail($order));
-		return response->json(true);
+		return response()->json(true);
 	}
 
 
