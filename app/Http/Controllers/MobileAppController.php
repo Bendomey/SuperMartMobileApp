@@ -18,8 +18,8 @@ class MobileAppController extends Controller
 	}
 
 	//get products
-	public function products(){
-		$products = Product::all();
+	public function products($name){
+		$products = Product::where('category_name',$name)->get();
 		return response()->json($products);
 	}
 

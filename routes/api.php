@@ -48,7 +48,7 @@ Route::post('update_password','CustomerAuthenticationController@updatePassword')
 
 Route::group([], function(){
 	Route::get('get_categories','MobileAppController@categories')->name('get_categories');
-	Route::get('get_products','MobileAppController@products')->name('get_products');
+	Route::get('get_products/{name}','MobileAppController@products');
 });
 
 /**
