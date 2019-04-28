@@ -14,7 +14,7 @@ class MobileAppController extends Controller
     //get categories
 	public function categories(){
 		$categories = Categories::all();
-		return response()->json(array($categories));
+		return response()->json(array('categories'=>$categories));
 	}
 
 	//get products
