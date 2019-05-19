@@ -3,7 +3,7 @@ $(document).ready(function(){
 	//for categories
 	$('.deleteCatButton').click(function() {
 		let data = $(this).data('category');
-		$('#ConfirmDeleteButton').attr('href',`view_categories/delete_phase/${data}`);
+		$('#ConfirmDeleteButton').attr('href',`/view_categories/delete_phase/${data.id}`);
 		//for modal
 		$(this).attr({
 			'data-toggle':'modal',
@@ -147,5 +147,21 @@ $(document).ready(function(){
 			}
 		})
 	})
+
+	// //for search
+	// $('.search_criteria').on('keypress',function(){
+	// 	let data = $(this).val()		
+	// 	$.ajax({
+	// 		type:'GET',
+	// 		url:'/search_product/' + data,
+	// 		dataType:'json',
+	// 		success:(data) => {
+	// 			console.log(data);
+	// 		},
+	// 		error:(err) => {
+	// 			console.log("error");
+	// 		}
+	// 	})
+	// })
 
 })

@@ -39,5 +39,10 @@ class MobileAppController extends Controller
 		return response()->json(true);
 	}
 
-
+	
+    public function search($data){
+        // $name = $request->product_name;
+        $search = Product::where('product_name','like',"$data%")->get();
+        return response()->json($search);
+    }
 }

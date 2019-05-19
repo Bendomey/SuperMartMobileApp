@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Categories;
 use Storage;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -43,20 +44,18 @@ class ProductController extends Controller
         $product->category_name = $request->category_name;
         $product->product_name = $request->product_name;
         $product->product_price = $request->product_price;
-        //saving the image
-        $hashName = md5(microtime());
-        $imageName = 'product_images/' . $hashName . '.' . ($request->file('product_img'))->getClientOriginalExtension();
-        $product->product_img = $imageName;
+        $product->product_img = $this->image($request->file('product_img'));
         $product->product_description = $request->product_description;
         $product->product_expiry_date = $request->product_expiry_date;
-        Storage::putFileAs(
-            'public/product_images',
-            $request->file('product_img'),
-            $hashName . '.' . ($request->file('product_img'))->getClientOriginalExtension()
-        );
-        
         $product->save();
         return back()->withSuccess("$request->product_name has been uploaded successfully");
+    }
+
+    protected function image($image){
+        $name = md5(microtime());
+        Image::make($image)->save('product_images/'. $name .'.'.$image->getClientOriginalExtension());
+        $image_save = 'product_images/'. $name .'.'.$image->getClientOriginalExtension();
+        return $image_save;
     }
 
     /**
@@ -100,22 +99,13 @@ class ProductController extends Controller
         //saving the image
         if($request->product_img != null){
             //delete old image
-            unlink("storage/$product->product_img");
-            Storage::delete("public/$product->product_img");
-            //save new image
-            $hashName = md5(microtime());
-            $imageName = 'product_images/' . $hashName . '.' . ($request->file('product_img'))->getClientOriginalExtension();
-            $product->product_img = $imageName;
-            $product->product_description = $request->product_description;
-            $product->product_expiry_date = $request->product_expiry_date;
-            Storage::putFileAs(
-                'public/product_images',
-                $request->file('product_img'),
-                $hashName . '.' . ($request->file('product_img'))-> getClientOriginalExtension()
-            );
+            unlink($product->product_img);
+            $product->product_img = $this->image($request->file('product_img'));
         }
+        $product->product_description = $request->product_description;
+        $product->product_expiry_date = $request->product_expiry_date;
         $product->save();   
-        return redirect()->route('product.index')->withSuccess("$request->product_img has been updated successfully");
+        return redirect()->route('product.index')->withSuccess("$product->product_name has been updated successfully");
     }
 
     /**
@@ -127,8 +117,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::whereId($id)->first();
-        unlink("storage/$product->product_img");
-        Storage::delete("public/$product->product_name");
+        unlink($product->product_img);
         $product->delete();
         return back()->withSuccess('Product has been deleted succesfully');
     }

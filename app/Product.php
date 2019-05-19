@@ -15,8 +15,12 @@ class Product extends Model
     	'product_expiry_date',
     	'featured',
     	'promote',
-    	'recommended'
+    	'recommended',
     ];
 
     protected $guard = ['id','created_at','updated_at'];
+
+    public function category(){
+        return $this->belongsTo(Categories::class);
+    }
 }

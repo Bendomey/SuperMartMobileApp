@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('price');
             $table->string('location');
             $table->enum('sell',[0,1])->default();
+            // $table->integer('numberOfItems');
             $table->timestamps();
         });
     }

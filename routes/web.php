@@ -42,7 +42,6 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/unPromote/{id}','ProductController@unPromote');
 	Route::get('/recommended/{id}','ProductController@recommended');
 	Route::get('/unRecommended/{id}','ProductController@unRecommended');
-
 	//for order management
 	Route::get('/orders','OrderController@viewOrder')->name('view_orders');
 	Route::get('/order/accept_order/{id}','OrderController@acceptOrder');

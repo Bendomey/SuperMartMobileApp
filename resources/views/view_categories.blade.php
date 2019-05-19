@@ -66,7 +66,7 @@
 					            <td>
 					            	<div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" data-categories="{{$cat}}" class="btn btn-info updateCatButton"><i class="fa fa-pencil-alt mr-1"></i>Edit</button>
-                                        <button class="btn btn-danger deleteCatButton" data-category="{{$cat->category_name}}"><i class="fa fa-times mr-1"></i>Delete</button>
+                                        <button class="btn btn-danger deleteCatButton" data-category="{{$cat}}"><i class="fa fa-times mr-1"></i>Delete</button>
                                     </div>
 					            </td>
 					        </tr>
@@ -98,6 +98,7 @@
       </div>
     <div class="modal-body">
 		<h3>Are you sure you want to delete this category?</h3>
+		<h5>All products under this category would also be deleted</h5>
 		<div class="modal-footer">
 			<button class="btn btn-secondary" style="color: #fff" data-dismiss="modal">Close</button>
 			<a id="ConfirmDeleteButton" class="btn btn-danger">Yes</a>

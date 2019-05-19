@@ -4,8 +4,9 @@ done.	ii. name
 done.	iii. image
 
 2. View Categories 
-done.	i. Delete
+done.	i. Delete 
 done.	ii. Update
+	iii. Delete and update related field's data
 
 done. 3. Create and Upload Products
 	i. product_id
