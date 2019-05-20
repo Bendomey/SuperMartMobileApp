@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categories;
 use App\Product;
-use Storage;
 use Image;
 
 class CategoriesController extends Controller
@@ -32,33 +31,29 @@ class CategoriesController extends Controller
 
     public function update(Request $request){
     	$category = Categories::findOrFail($request->id);
-    	// $category->category_name = $request->category_name;
-    	// if($request->category_img != null){
-    	// 	//delete old image
-    	// 	unlink($category->category_img);
-    	// 	//save new image
-	    // 	$category->category_img = $this->request->file('category_img');
-    	// }
-        var_dump($category->products);
-        // if($product->category_name == $category->category_name){
-        //     $product->update([
-        //         'category_name' => $request->category_name
-        //     ]);
-        // }
+    	$category->category_name = $request->category_name;
+    	if($request->category_img != null){
+    		//delete old image
+    		unlink($category->category_img);
+    		//save new image
+	    	$category->category_img = $this->request->file('category_img');
+    	}
+        $category->products()->update([
+            'category_name' => $request->category_name
+        ]);
 
-    	// $category->save();
-    	// //redirect to view page of category
-    	// return back()->withSuccess("$request->category_name was updated successfully");
+    	$category->save();
+    	//redirect to view page of category
+    	return back()->withSuccess("$request->category_name was updated successfully");
     }
 
     public function destroy($categoryName){
     	$category = Categories::where('id',$categoryName)->first();
     	unlink($category->category_img);
-        $category->products()->delete();
         foreach ($category->products as $a) {
             unlink($a->product_img);
         }
-        // unlink($category->products->product_img);
+        $category->products()->delete();
     	$category->delete();
     	return back()->withSuccess('Category deleted successfully');
     }

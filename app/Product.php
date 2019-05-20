@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
+        'categories_id',
     	'category_name',
     	'product_name',
     	'product_price',
@@ -19,8 +20,4 @@ class Product extends Model
     ];
 
     protected $guard = ['id','created_at','updated_at'];
-
-    public function category(){
-        return $this->belongsTo(Categories::class);
-    }
 }

@@ -51,7 +51,7 @@
         <div class="card-body p-0">
           <div class="table-responsive">
             @if(count($top_product) > 0)
-              @foreach($product as $top_product)
+              @foreach($top_product as $product)
               <table class="table mb-0">
                 <tbody>
                   <tr>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Categories;
-use Storage;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -40,7 +39,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $cat = Categories::where('category_name',$request->category_name)->first();
         $product = new Product();
+        $product->categories_id = $cat->id;
         $product->category_name = $request->category_name;
         $product->product_name = $request->product_name;
         $product->product_price = $request->product_price;
