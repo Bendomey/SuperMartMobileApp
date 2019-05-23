@@ -18,7 +18,6 @@ class CustomerAuthenticationController extends Controller
         if($user == null){
             $customer = new Customer();
             $customer->customer_name = $request->name;
-            $customer->customer_img = 'customer_images/avatar.jpg';
             $customer->customer_email = $request->email;
             $customer->customer_contact = $request->contact;
             $customer->customer_password = Hash::make($request->password);
@@ -121,7 +120,7 @@ class CustomerAuthenticationController extends Controller
             $customer->validation_code = $this->validation_code();
             $customer->save();
             try{                
-            Notification::route('mail',$user->customer_email)->notify(new CustomerForgotPasswordMail($user->validation_code,$user->customer_name));
+            Notification::route('mail',$customer->customer_email)->notify(new CustomerForgotPasswordMail($customer->validation_code,$customer->customer_name));
             // Notification::send($user->customer_contact,new CustomerForgotPassword($user->transaction_code,$user->customer_email));
             }catch(Exception $e){
                 return response()->json(null);
@@ -178,7 +177,7 @@ class CustomerAuthenticationController extends Controller
             $customer->customer_name = $request->name;
             $customer->customer_email = $request->email;
             $customer->customer_contact = $request->contact;
-            if($request->customer_img != null){
+            if($request->customer_img != '../assets/avatar.jpg'){
                 $customer->customer_img = $this->image($request->customer_img);
             }
             $customer->save();
