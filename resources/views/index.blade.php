@@ -81,8 +81,8 @@
             <div class="card-body">
               <div class="media d-flex">
                 <div class="media-body text-left">
-                  <h6 class="text-muted">Accepted Orders For This Month</h6>
-                  <h3>{{$accepted_orders}}</h3>
+                  <h6 class="text-muted">Customers signed up</h6>
+                  <h3>{{$customers}}</h3>
                 </div>
                 <div class="align-self-center">
                   <i class="icon-trophy success font-large-2 float-right"></i>

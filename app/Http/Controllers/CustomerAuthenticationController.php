@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Notification;
 use App\Customer;
+use Image;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\CustomerForgotPassword;
 use App\Notifications\CustomerForgotPasswordMail;
@@ -17,6 +18,7 @@ class CustomerAuthenticationController extends Controller
         if($user == null){
             $customer = new Customer();
             $customer->customer_name = $request->name;
+            $customer->customer_img = 'customer_images/avatar.jpg';
             $customer->customer_email = $request->email;
             $customer->customer_contact = $request->contact;
             $customer->customer_password = Hash::make($request->password);
@@ -84,6 +86,7 @@ class CustomerAuthenticationController extends Controller
 
     	return response()->json($customer);
 	}
+
 
     /**
     * @auth Domey Benjamin
@@ -175,6 +178,9 @@ class CustomerAuthenticationController extends Controller
             $customer->customer_name = $request->name;
             $customer->customer_email = $request->email;
             $customer->customer_contact = $request->contact;
+            if($request->customer_img != null){
+                $customer->customer_img = $this->image($request->customer_img);
+            }
             $customer->save();
             return response()->json($customer);
         }else{
@@ -196,6 +202,13 @@ class CustomerAuthenticationController extends Controller
             return response()->json(null);
         }
         
+    }
+
+    public function image($image){
+        $name = md5(microtime());
+        Image::make($image)->save('customer_images' . $name . '.' . $image->getClientOriginalExtension());
+        $image_save = 'customer_images' . $name . '.' . $image->getClientOriginalExtension()
+        return $image_save;
     }
 
 }
