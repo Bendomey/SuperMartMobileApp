@@ -22,7 +22,3 @@ done. 4. View Product
 	i. Promote 
 	ii. Feature
 	iii. Recommend
-
-for Mobile Side
-done. 4. Users Table
-done. 5. sign in and register
