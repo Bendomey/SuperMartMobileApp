@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categories;
 use App\Product;
-use Image;
+use Intervention\Image\Facades\Image;
 
 class CategoriesController extends Controller
 {
@@ -17,7 +17,7 @@ class CategoriesController extends Controller
     public function create(Request $request){
     	$category = new Categories();
     	$category->category_name = $request->category_name;
-    	$category->category_img = $this->image($request->file('category_img'));
+    	$category->category_img = $this->image($request->category_img);
     	$category->save();
     	return back()->with('success',"$request->category_name uploaded successfully");
     }
