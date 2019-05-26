@@ -206,7 +206,7 @@ class CustomerAuthenticationController extends Controller
     public function image($image){
         $name = md5(microtime());
         Image::make($image)->save('customer_images/' . $name . '.' . $image->getClientOriginalExtension());
-        $image_save = 'customer_images/' . $name . '.' . $image->getClientOriginalExtension()
+        $image_save = 'customer_images/' . $name . '.' . $image->getClientOriginalExtension();
         return $image_save;
     }
 
