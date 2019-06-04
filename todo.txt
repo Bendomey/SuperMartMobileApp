@@ -22,3 +22,8 @@ done. 4. View Product
 	i. Promote 
 	ii. Feature
 	iii. Recommend
+
+
+
+1 Register stores
+2 Login stores

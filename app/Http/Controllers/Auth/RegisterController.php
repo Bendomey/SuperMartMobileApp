@@ -40,6 +40,10 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function registerStore(){
+        return view('auth/register_stores');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -54,6 +58,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'contact' => ['required','string','max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'isAuth' => ['required','string']
         ]);
     }
 
@@ -70,6 +75,7 @@ class RegisterController extends Controller
             'position' => $data['position'],
             'email' => $data['email'],
             'contact' => $data['contact'],
+            'isAuth' => $data['isAuth'],
             'password' => Hash::make($data['password']),
         ]);
     }

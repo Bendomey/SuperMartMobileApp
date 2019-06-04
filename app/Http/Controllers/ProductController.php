@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Categories;
 use Intervention\Image\Facades\Image;
+use App\User;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -16,7 +18,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $user = User::findOrFail(Auth::user()->id);
+        $categories = $user->categories()->get();
+        foreach($categories as $category){
+            $products = Product::where('categories_id',$category->id)->paginate(10);
+        }
         return view('view_products', compact('products'));
     }
 
@@ -27,7 +33,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Categories::all();
+        $user = User::findOrFail(Auth::user()->id);
+        $categories = $user->categories()->get();
         return view('add_product', compact('categories'));
     }
 
@@ -78,8 +85,19 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $categories = Categories::all();
-        $product = Product::whereId($id)->first();
+        $user = User::findOrFail(Auth::user()->id);
+        $categories = $user->categories()->get();
+        $products = null;
+        foreach ($categories as $category) {
+            $products = Product::where('categories_id',$category->id)->get();         
+        }
+        foreach ($products as $a) {
+            if($a->id == $id){
+                $product = Product::whereId($id)->first();
+                break;
+            }
+        }
+        $product = null;
         return view('edit_product',compact(['product','categories']));
     }
 

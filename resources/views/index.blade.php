@@ -56,7 +56,7 @@
                 <tbody>
                   <tr>
                     <th scope="row" class="border-top-0">{{$product->product_name}}</th>
-                    <td class="border-top-0">{{$product->product_price}}</td>
+                    <td class="border-top-0">GHc {{$product->product_price}}</td>
                   </tr>
                 </tbody>
               @endforeach

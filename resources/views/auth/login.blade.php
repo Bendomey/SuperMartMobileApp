@@ -1,5 +1,5 @@
 @extends('layouts.app')
-    @section('title','Login')
+@section('title','Login')
 
 @section('AuthContent')
 <div class="container">
@@ -57,12 +57,15 @@
                                 <button type="submit" class="btn btn-danger">
                                     {{ __('Login') }}
                                 </button>
-
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+
+                                <a href="{{route('store_register')}}" class="btn btn-info">
+                                    {{ __('Register') }}
+                                </a>
                             </div>
                         </div>
                     </form>

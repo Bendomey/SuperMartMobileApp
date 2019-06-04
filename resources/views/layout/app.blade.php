@@ -173,16 +173,22 @@
 
 
     <!-- BEGIN: Main Menu-->
-
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
           <li class=" nav-item"><a href="{{route('/')}}"><i class="fa fa-home mr-1"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
+
+        @if(Auth::user()->isAuth == 1)
+          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Registered Stores</span>
+          </li>
+          <li class=" nav-item"><a href="{{route('view_stores')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">View Stores</span></a></li>
+        @endif
+
           <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Categories</span>
           </li>
           <li class=" nav-item"><a href="{{route('add_categories')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">Add Category</span></a></li>
           <li class=" nav-item"><a href="{{route('view_categories')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Category</span></a></li>
-          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Store</span>
+          <li class=" navigation-header"><span data-i18n="nav.category.admin-panels">Products</span>
           </li>
           <li class=" nav-item"><a href="{{route('product.create')}}"><i class="fa fa-plus mr-1"></i><span class="menu-title" data-i18n="">Add Product</span></a></li>
           <li class=" nav-item"><a href="{{route('product.index')}}"><i class="fa fa-list mr-1"></i><span class="menu-title" data-i18n="">View Products</span></a></li>
@@ -192,7 +198,6 @@
         </ul>
       </div>
     </div>
-
     <!-- END: Main Menu-->
     <!-- BEGIN: Content-->
     <div class="app-content content">

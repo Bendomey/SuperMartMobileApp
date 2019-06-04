@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categories;
 use App\Product;
+use Auth;
+use App\User;
 use Intervention\Image\Facades\Image;
 
 class CategoriesController extends Controller
 {
     public function view_categories(){
-        $categories = Categories::paginate(10);
+        $user = User::findOrFail(Auth::user()->id);
+        $categories = $user->categories()->paginate(10);
         return view('view_categories', compact('categories'));
     }
 
     public function create(Request $request){
     	$category = new Categories();
+        $category->user_id = Auth::user()->id;
     	$category->category_name = $request->category_name;
     	$category->category_img = $this->image($request->category_img);
     	$category->save();

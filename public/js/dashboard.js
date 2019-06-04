@@ -164,4 +164,15 @@ $(document).ready(function(){
 	// 	})
 	// })
 
-})
+// for removing store
+	$('#removeStore').click(function(){
+		let id = $(this).data('id');
+		$('#ConfirmDeleteStoreButton').attr('href',`/stores/${id}/delete_store`);
+		//for modal
+		$(this).attr({
+			'data-toggle':'modal',
+			'data-target':'#confirmDeleteStore'
+		});	
+	});
+
+});

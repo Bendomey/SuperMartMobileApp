@@ -39,13 +39,16 @@
 			</div>
 		@endif
 
+		@if($product != null)
+        // var_dump($category->id);
+
 		<div class="card">
 			<div class="card-content collapse show">
 				<div class="card-body">
 					<form class="form" method="POST" action="{{route('updateProduct')}}" enctype="multipart/form-data">
 						@csrf
 						<div class="form-body">
-							<h4 class="form-section"><i class="fa fa-plus"></i> Add Product</h4>
+							<h4 class="form-section"><i class="fa fa-edit"></i> Edit Product</h4>
 							<input type="hidden" name="id" value="{{$product->id}}">
 							<div class="row">
 								<div class="col-md-12">
@@ -113,8 +116,16 @@
 				</div>
 			</div>
 		</div>
+		@else
 
-
+		
+		<div class="display-flex justify-content-center">
+			<div class="alert alert-info alert-dismissible fade show" role="alert">
+			  <strong class="">You do not have authorization to edit this product</strong>
+			  <a href="{{route('product.index')}}" class="text-white" style="text-decoration:underline;">Go back</a>
+			</div>
+		</div>
+		@endif
 
 </div>
 

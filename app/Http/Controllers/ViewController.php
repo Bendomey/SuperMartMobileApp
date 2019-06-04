@@ -7,6 +7,8 @@ use App\Product;
 use App\Order;
 use App\Categories;
 use App\Customer;
+use App\User;
+
 
 class ViewController extends Controller
 {
@@ -28,5 +30,38 @@ class ViewController extends Controller
 
     public function add_categories(){
     	return view('add_categories');
+    }
+
+    public function view_stores(){
+        $stores = User::where('isAuth','0')->paginate(10);
+        return view('view_stores',compact('stores'));
+    }
+
+    public function remove_store($id){
+        $stores = User::findOrFail($id);
+        // var_dump($stores)
+        //deleting products
+        foreach ($stores->categories as $category) {
+            foreach($category->products as $a){
+                unlink($a->product_img);            
+            }
+        }
+        // $stores->categories->products()->delete();
+        foreach($stores->categories as $category){
+            $category->products()->delete();
+        }
+        //deleting categories
+        foreach ($stores->categories as $a) {
+            unlink($a->category_img);
+        }
+        $stores->categories()->delete();
+
+        //deleting the store
+        if($stores->profile_img != null){
+            unlink($stores->profile_img);
+        }
+        $storeName = $stores->name;
+        $stores->delete();
+        return back()->withSuccess("$storeName was deleted successfully");
     }
 }

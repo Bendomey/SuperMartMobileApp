@@ -16,6 +16,8 @@
 // });
 
 
+Route::get('/store/register','Auth\RegisterController@registerStore')->name('store_register');
+
 //for administrator
 Route::group(['middleware'=>'auth'], function(){
 	Route::get('/','ViewController@index')->name('/');
@@ -42,10 +44,15 @@ Route::group(['middleware'=>'auth'], function(){
 	Route::get('/unPromote/{id}','ProductController@unPromote');
 	Route::get('/recommended/{id}','ProductController@recommended');
 	Route::get('/unRecommended/{id}','ProductController@unRecommended');
+
 	//for order management
 	Route::get('/orders','OrderController@viewOrder')->name('view_orders');
 	Route::get('/order/accept_order/{id}','OrderController@acceptOrder');
 	Route::get('/order/reject_order/{id}','OrderController@rejectOrder');
+
+	//for stores
+	Route::get('/stores/view_stores','ViewController@view_stores')->name('view_stores');
+	Route::get('/stores/{id}/delete_store','ViewController@remove_store');
 });
 
 Auth::routes();
