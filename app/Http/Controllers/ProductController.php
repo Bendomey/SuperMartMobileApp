@@ -48,6 +48,7 @@ class ProductController extends Controller
     {
         $cat = Categories::where('category_name',$request->category_name)->first();
         $product = new Product();
+        $product->user_id = Auth::user()->id;
         $product->categories_id = $cat->id;
         $product->category_name = $request->category_name;
         $product->product_name = $request->product_name;
@@ -85,20 +86,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail(Auth::user()->id);
-        $categories = $user->categories()->get();
-        $products = null;
-        foreach ($categories as $category) {
-            $products = Product::where('categories_id',$category->id)->get();         
+        $product = Product::where(['user_id'=>Auth::user()->id,'id'=>$id])->first();
+        if($product){
+            $categories = Categories::where('user_id',Auth::user()->id)->get();
+            return view('edit_product',compact(['product','categories']));
+        }else{
+            $product = null;
+            return view('edit_product',compact('product'));
         }
-        foreach ($products as $a) {
-            if($a->id == $id){
-                $product = Product::whereId($id)->first();
-                break;
-            }
-        }
-        $product = null;
-        return view('edit_product',compact(['product','categories']));
     }
 
     /**
@@ -146,7 +141,7 @@ class ProductController extends Controller
         $product->update([
             'featured'=>'1'
         ]);
-        return response()->json('success');
+        return back();
     }
 
     public function unFeature($id){
@@ -154,7 +149,7 @@ class ProductController extends Controller
         $product->update([
             'featured'=>'0'
         ]);
-        return response()->json('success');
+        return back();
     }
 
     public function promote($id){
@@ -162,7 +157,7 @@ class ProductController extends Controller
         $product->update([
             'promote'=>'1'
         ]);
-        return response()->json('success');
+        return back();
     }
 
     public function unPromote($id){
@@ -170,7 +165,7 @@ class ProductController extends Controller
         $product->update([
             'promote'=>'0'
         ]);
-        return response()->json('success');
+        return back();
     }
 
     public function recommended($id){
@@ -178,7 +173,7 @@ class ProductController extends Controller
         $product->update([
             'recommended'=>'1'
         ]);
-        return response()->json('success');
+        return back();
     }
 
     public function unRecommended($id){
@@ -186,6 +181,6 @@ class ProductController extends Controller
         $product->update([
             'recommended'=>'0'
         ]);
-        return response()->json('success');
+        return back();
     }
 }

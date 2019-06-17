@@ -67,31 +67,19 @@
 					            <td>
 					            	<div class="btn-group" role="group" aria-label="Basic example">
 					            		@if($product->featured == '0')
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success featureButton">Feature</button>
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-info unFeatureButton" hidden>unFeature</button>
+					            			<a href='{{url("/feature/$product->id")}}' class="btn btn-success">Feature</a>
 					            		@else
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success featureButton" hidden>Feature</button>
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-info unFeatureButton">unFeature</button>
+					            			<a href='{{url("unfeature/$product->id")}}' class="btn btn-info">unFeature</a>
 					            		@endif
-					            		
+			
 					            		@if($product->promote == '0')
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success promoteButton">Promote</button>
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success unPromoteButton" hidden></i>unPromote</button>
+					            			<a href='{{url("/promote/$product->id")}}' class="btn btn-success">Promote</a>
 					            		@else
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success promoteButton" hidden>Promote</button>
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success unPromoteButton">unPromote</button>
-					            		@endif
-					            		
-					            		@if($product->recommended == '0')
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success recommendButton">Recommend</button>
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success unRecommendButton" hidden>unRecommend</button>
-					            		@else
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success recommendButton" hidden>Recommend</button>
-					            			<button type="button" data-product="{{$product->id}}" class="btn btn-success unRecommendButton">unRecommend</button>
+					            			<a href='{{url("unPromote/$product->id")}}' class="btn btn-info">unPromote</a>
 					            		@endif
 					            		
                                         <a type="button" href='{{url("product/$product->id/edit")}}' class="btn btn-info"><i class="fa fa-pencil-alt mr-1"></i>Edit</a>
-                                        <button class="btn btn-danger deletePoductButton" data-product="{{$product->id}}"><i class="fa fa-times mr-1"></i>Delete</button>
+                                        <button class="btn btn-danger deleteProductButton" data-product="{{$product->id}}"><i class="fa fa-times mr-1"></i>Delete</button>
                                     </div>
 					            </td>
 					        </tr>

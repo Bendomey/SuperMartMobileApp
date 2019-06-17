@@ -37,6 +37,21 @@ class ViewController extends Controller
         return view('view_stores',compact('stores'));
     }
 
+    public function feature($id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'feature' => '1'
+        ]);
+        return response()->json('success');
+    }
+    public function unFeature($id){
+        $user = User::findOrFail($id);
+        $user->update([
+            'feature' => '0'
+        ]);
+        return response()->json('success');
+    }
+
     public function remove_store($id){
         $stores = User::findOrFail($id);
         // var_dump($stores)

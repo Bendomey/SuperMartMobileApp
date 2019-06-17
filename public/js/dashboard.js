@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 
 	//for products
-	$('.deletePoductButton').click(function(){
+	$('.deleteProductButton').click(function(){
 		let data = $(this).data('product');
 		$('#ConfirmDeleteButtonForProduct').attr('href',`product/delete_phase/${data}`);
 		//for modal
@@ -33,136 +33,6 @@ $(document).ready(function(){
 		})
 	})
 
-
-	//for featured
-	$('.featureButton').click(function(){
-		let data = $(this).data('product')
-		// alert(data)
-		$.ajax({
-			type: 'Get',
-			url: `/feature/${data}`,
-			dataType:'jSON',
-			success: (data) => {
-				console.log(data);
-				$(this).attr('hidden',true);
-				$('.unFeatureButton').removeAttr('hidden');
-			},
-			error: (err) =>{
-				alert('error');
-			}
-		})
-	})
-
-	//for unfeatured
-	$('.unFeatureButton').click(function(){
-		let data = $(this).data('product')
-		// alert(data)
-		$.ajax({
-			type: 'Get',
-			url: `/unfeature/${data}`,
-			dataType:'jSON',
-			success: (data) => {
-				console.log(data);
-				$(this).attr('hidden',true);
-				$('.featureButton').removeAttr('hidden');
-			},
-			error: (err) =>{
-				alert('error');
-			}
-		})
-	})
-
-		//for promo
-	$('.promoteButton').click(function(){
-		let data = $(this).data('product')
-		// alert(data)
-		$.ajax({
-			type: 'Get',
-			url: `/promote/${data}`,
-			dataType:'jSON',
-			success: (data) => {
-				console.log(data);
-				$(this).attr('hidden',true);
-				$('.unPromoteButton').removeAttr('hidden');
-			},
-			error: (err) =>{
-				alert('error');
-			}
-		})
-	})
-
-	//for unpromo
-	$('.unPromoteButton').click(function(){
-		let data = $(this).data('product')
-		// alert(data)
-		$.ajax({
-			type: 'Get',
-			url: `/unPromote/${data}`,
-			dataType:'jSON',
-			success: (data) => {
-				console.log(data);
-				$(this).attr('hidden',true);
-				$('.promoteButton').removeAttr('hidden');
-			},
-			error: (err) =>{
-				alert('error');
-			}
-		})
-	})
-
-		//for recommended
-	$('.recommendButton').click(function(){
-		let data = $(this).data('product')
-		// alert(data)
-		$.ajax({
-			type: 'Get',
-			url: `/recommended/${data}`,
-			dataType:'jSON',
-			success: (data) => {
-				console.log(data);
-				$(this).attr('hidden',true);
-				$('.unRecommendButton').removeAttr('hidden');
-			},
-			error: (err) =>{
-				alert('error');
-			}
-		})
-	})
-
-	//for unrecommended
-	$('.unRecommendButton').click(function(){
-		let data = $(this).data('product')
-		// alert(data)
-		$.ajax({
-			type: 'Get',
-			url: `/unRecommended/${data}`,
-			dataType:'jSON',
-			success: (data) => {
-				console.log(data);
-				$(this).attr('hidden',true);
-				$('.recommendButton').removeAttr('hidden');
-			},
-			error: (err) =>{
-				alert('error');
-			}
-		})
-	})
-
-	// //for search
-	// $('.search_criteria').on('keypress',function(){
-	// 	let data = $(this).val()		
-	// 	$.ajax({
-	// 		type:'GET',
-	// 		url:'/search_product/' + data,
-	// 		dataType:'json',
-	// 		success:(data) => {
-	// 			console.log(data);
-	// 		},
-	// 		error:(err) => {
-	// 			console.log("error");
-	// 		}
-	// 	})
-	// })
 
 // for removing store
 	$('#removeStore').click(function(){
@@ -176,3 +46,5 @@ $(document).ready(function(){
 	});
 
 });
+
+

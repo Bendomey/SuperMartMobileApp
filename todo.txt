@@ -27,3 +27,14 @@ done. 4. View Product
 
 1 Register stores
 2 Login stores
+
+for mobile
+i. Homepage
+	a.Featured Products
+		i.Open product
+		Not Doneii.All Featured Products
+	b.Featured Stores
+		i.All Featured Stores
+		ii.Single Featured Store
+	c.Promotions
+		i.products		

@@ -47,8 +47,15 @@ Route::post('update_password','CustomerAuthenticationController@updatePassword')
 */
 
 Route::group([], function(){
-	Route::get('get_categories','MobileAppController@categories')->name('get_categories');
+	Route::get('homepage','MobileAppController@homepage')->name('homepage');
+	Route::get('single_product/{id}','MobileAppController@product');
+	Route::get('featured_stores','MobileAppController@all_featured_stores');
+	Route::get('single_store/{id}','MobileAppController@single_store');
+	// Route::get('get_categories','MobileAppController@categories')->name('get_categories');
 	Route::get('get_products/{name}','MobileAppController@products');
+	Route::get('featured_single_store/{id}','MobileAppController@featured_single_store');
+	Route::get('promote_products','MobileAppController@promote_products');
+	Route::get('promote_products_all', 'MobileAppController@promote_products_all');
 	//searching ajax
 	Route::get('/search_product/{data}','MobileAppController@search');
 });

@@ -53,6 +53,8 @@ Route::group(['middleware'=>'auth'], function(){
 	//for stores
 	Route::get('/stores/view_stores','ViewController@view_stores')->name('view_stores');
 	Route::get('/stores/{id}/delete_store','ViewController@remove_store');
+	Route::get('/stores/{id}/feature','ViewController@feature');
+	Route::get('/stores/{id}/unfeature','ViewController@unFeature');
 });
 
 Auth::routes();

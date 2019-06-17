@@ -62,6 +62,13 @@
 					            <td>{{$store->contact}}</td>
 					            <td>
 					            	<div class="btn-group" role="group" aria-label="Basic example">
+					            		@if($store->feature == '0')
+                                        <button class="btn btn-success featureStoreBtn" data-id="{{$store->id}}"><i class="fa fa-check mr-1"></i>Feature</button>
+                                        <button class="btn btn-success unfeatureStoreBtn" data-id="{{$store->id}}" hidden><i class="fa fa-times mr-1"></i>unFeature</button>
+                                        @else
+                                        <button class="btn btn-success featureStoreBtn" data-id="{{$store->id}}" hidden><i class="fa fa-check mr-1"></i>Feature</button>
+                                        <button class="btn btn-info unfeatureStoreBtn" data-id="{{$store->id}}"><i class="fa fa-times mr-1"></i>UnFeature</button>
+                  						@endif                      
                                         <button class="btn btn-danger" id="removeStore" data-id="{{$store->id}}"><i class="fa fa-times mr-1"></i>Remove</button>
                                     </div>
 					            </td>
